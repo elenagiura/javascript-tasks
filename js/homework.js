@@ -31,7 +31,7 @@ a = 3;
 b = -7;
 c = 2;
 
-if (a+b+c>=0) {
+if (a*b*c>=0) {
 	console.log("Sign is +");
 } else {
 	console.log("Sign is -");
