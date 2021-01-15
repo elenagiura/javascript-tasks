@@ -1,179 +1,176 @@
-/*TASK 1:
-There are two arrays:
+/* TASK 1:
 
-var dataOld = [34, true, "Peter", 1992];
-var dataNew = [];
+Create a function that should receive an array, and return an array in reverse order. Result should be stored in a variable */
+console.log("*TASK 1*");
 
-Repack old array to the new one, in the same order
+function array (a) {
+	i=0;
+	var reverse = [];
+	while(a.length>i) {
+		reverse[i] = a[a.length-1-i];
+		i++;
+	}
+	return reverse;
+}
+var reverseArray = array([1,2,3,4,5,6,7,8,9,10]);
+console.log(reverseArray);
 
-Console log result*/
-console.log("TASK 1");
+/* TASK 2: 
 
-var dataOld = [34, true, "Peter", 1992];
-var dataNew = [];
+Create a function that should receive parameter of any type, and console log the type of received data */
+console.log("*TASK 2*");
 
-var i = 0;
-
-while (i<dataOld.length) {
-	dataNew[i] = dataOld[i];
-	i++;
+var typeOf = function (data) {
+	console.log(typeof(data));
 }
 
-console.log("dataNew: "+dataNew);
+typeOf("Mike");
+typeOf(false);
+typeOf(9.85);
 
+/* TASK 3: 
 
-/*TASK 2:
+Create a function that should receive an array of at least five names, and return the length of the longest name in the array
+(hint - you can get the length of an string the same way as for array). Result should be stored in a variable */
+console.log("*TASK 3*");
 
-There are two arrays:
-
-var dataOld = [34, true, "Peter", 1992];
-var dataNew = [];
-
-Repack old array to the new one, in the reverse order
-
-Console log result*/
-console.log("TASK 2");
-
-for(var i=0; i<dataOld.length;i++) {
-	dataNew[i]=dataOld[dataOld.length-1-i];
-}
-
-console.log("dataNew reverse: "+dataNew);
-
-
-/*TASK 3:
-
-There are two arrays:
-
-var dataOld = [34, true, "Peter", 1992];
-var dataNew = [12, "Jack"];
-
-Repack old array to the new one, so the data from two arrays is joined, starting with existing data from the new one.
-
-Console log result*/
-console.log("TASK 3");
-
-dataNew = [12, "Jack"];
-//console.log(dataNew.length);
-
-for(var i=0; i<dataOld.length; i++) {
-	dataNew[dataNew.length]= dataOld[i];
-}
-
-console.log("dataNew joined: "+dataNew);
-
-/*TASK 4:
-
-There are two arrays:
-
-var a = [12, 56, 32, 44, 69];
-var b = [88, 7, 13];
-
-Create a new array that contains data from both arrays, starting with data from array a.
-
-Console log result*/
-console.log("TASK 4");
-
-var a = [12, 56, 32, 44, 69];
-var b = [88, 7, 13];
-
-var newArray = [];
-
-var j=0;
-while(j<a.length) {
-	newArray[newArray.length]=a[j];
-	j++;
-	if(newArray.length===a.length) {
-		var m = 0;
-		while(m<b.length) {
-			newArray[newArray.length] = b[m];
-			m++;
+function longestName(names) {
+	if(names.length<5) {
+		return console.log("You should input at least 5 names.");
+	}
+	var name = names[0];
+	for(i=0; i<names.length; i++) {
+		if (name.length>=(names[i].length)) {
+			continue;
+		} else {
+			name = names[i];
 		}
 	}
+	return name;
 }
 
-console.log("newArray: "+newArray);
+var result = longestName(["Nina","Cleopatra","Dean","Constantin","John","Jim"]);
+console.log(result);
 
-/*TASK 5:
+/* TASK 4: 
 
-There are two arrays:
+Create a function that should receive an array of numbers, find the second lowest and second greatest number, 
+and console log result */
+console.log("*TASK 4*");
 
-var a = [12, 56, 32, 44];
-var b = [88, 7, 13];
-
-Create a new array that contains data from both arrays, but in alternating order, one element from array a, then one element from array b, and so on. In the end it should look like this:
-
-[12, 88, 56, 7, 32, 13, 44]
-
-Console log result*/
-console.log("TASK 5");
-
-a = [12, 56, 32, 44];
-var newArray2=[];
-
-var m = 0;
-var n = 0;
-for(var i=0; i<(a.length+b.length); i++) {
-	
-	if(i===0 || i%2===0) {
-		newArray2[i] = a[m];
-		m++;
-	} else {
-		newArray2[i] = b[n];
-		n++;
-	}
-}
-console.log("newArray2: "+newArray2);
-
-/*TASK 6:
-
-Console log next pattern (you're allowed to use only single *)
-
-*
-**
-***
-****
-*****
-****** */
-console.log("TASK 6");
-
-var v=0;
-var star = "*";
-var starArray = [];
-
-while(v<=5) {
-	starArray[starArray.length]=star;
-	console.log(""+[starArray.join("")]);
-	v++;
-}
-
-/* TASK 7:
-
-Console log next pattern (you're allowed to use only single * or empty space)
-
-**********
-*        *
-*        *
-*        *
-*        *
-********** */
-console.log("TASK 7");
-
-for (var i=1; i<=6; i++) {
-	var newStarArray=[];
-	if(i===1 || i===6) {
-		for(var j=1; j<=10; j++) {
-			newStarArray[newStarArray.length]=star;
-		}
-	} else {
-		var empty= " ";
-		for(var m=1; m<=10; m++) {
-			if(m===1 || m===10) {
-				newStarArray[newStarArray.length]=star;
+function deleteGreatestAndLowest (greatestNumber, lowestNumber, array) {
+		for(i=0; i<array.length; i++) {
+			if(array[i]===lowestNumber) {
+				delete array[i];
+				lowestNumber=array[0];
 			} else {
-				newStarArray[newStarArray.length]=empty;
+				if(greatestNumber===array[i]) {
+					delete array[i];
+					greatestNumber=array[0];
+				} else {
+					continue;
+				}
 			}
 		}
-	}
-	console.log(""+[newStarArray.join("")]);
+		return array;
 }
+
+function finding(array) {
+	var greatestNumber=array[0];
+	var lowestNumber=array[0];
+		for(i=0; i<array.length; i++) {
+			if(array[i]<=lowestNumber) {
+				lowestNumber = array[i];
+			} else {
+				if(greatestNumber<array[i]) {
+					greatestNumber=array[i];
+				} else {
+					continue;
+				}
+			}
+		}
+
+	return [greatestNumber, lowestNumber];
+}
+
+function secGreatAndSecLow(array) {
+	var newArray = finding(array);
+	newArray = deleteGreatestAndLowest(newArray[0], newArray[1], array);
+	newArray = finding(newArray);
+
+	return console.log("The second greatest number is: "+newArray[0]+ " and the second lowest number is: "+newArray[1]);
+}
+
+secGreatAndSecLow([55,7,4,0,6,145,75,3,-5,-4]);
+
+/* TASK 5:
+
+Create two functions. First one should receive two parameters, an array of numbers, and a single number. 
+Then it should call the second function, and pass the same array and number into it. 
+The second function should, based on an array and number provided, 
+find all numbers in an array which are bigger then a provided number, and create an array of those numbers. 
+Then it should console log result. */
+console.log("*TASK 5*");
+
+function secondArray(array, number) {
+	var newArray = [];
+	for(i=0; i<array.length; i++) {
+		if(array[i]>number) {
+			newArray[newArray.length] = array[i];
+		} else {
+			continue;
+		}
+	}
+	return console.log("Greater numbers than number "+number+" from array: "+array+" are: " +newArray);
+}
+
+function firstArray(array, number) {
+	return secondArray(array, number);
+}
+
+firstArray([1,55,6,34,54,8,9],15);
+
+/* TASK 6:
+
+Create three functions. 
+
+First one should receive an array and return the lowest number in the array.
+Second one should receive an array and return the highest number if an array.
+
+Third function should receive first two functions,
+and should multiply the result of the first function with the result of the second function. 
+Then it should console log the result. */
+console.log("*TASK 6*");
+
+var taskSixArray = [3,5,6,55,100,32,6,-2,9];
+
+function greatestNumber(array) {
+	var greatestNumber=array[0];
+	for(i=0; i<array.length; i++) {
+		if(array[i]<=greatestNumber) {
+			continue;
+		} else {
+			greatestNumber=array[i];
+		}
+	}
+	return greatestNumber;
+}
+
+function lowestNumber(array) {
+	var lowestNumber=array[0];
+	for(i=0; i<array.length; i++) {
+		if(array[i]>=lowestNumber) {
+			continue;
+		} else {
+			lowestNumber=array[i];
+		}
+	}
+	return lowestNumber;
+}
+
+
+
+
+
+
+
