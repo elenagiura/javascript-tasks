@@ -1,103 +1,195 @@
+/*TASK from class*/
+console.log("TASK from class:");
 
-/* TASK 6:
+var players = [["Mikey",5,14],["Leon",4,23],["John",1,5],["Filip",7,31],["Dean",6,21],["Grorge",2,12]];
 
-Create three functions. 
-
-First one should receive an array and return the lowest number in the array.
-Second one should receive an array and return the highest number if an array.
-
-Third function should receive first two functions,
-and should multiply the result of the first function with the result of the second function. 
-Then it should console log the result. */
-console.log("*TASK 6*");
-
-var taskSixArray = [3,5,6,55,100,32,6,-2,9];
-
-function greatestNumber(array) {
-	var greatestNumber=array[0];
-	for(i=0; i<array.length; i++) {
-		if(array[i]<=greatestNumber) {
-			continue;
-		} else {
-			greatestNumber=array[i];
-		}
-	}
-	return greatestNumber;
+function repackPlayers (array) {
+  for(var i=0; i<players.length; i++) {
+    var repackInObject = {};
+    repackInObject.name=array[i][0];
+    repackInObject.titules=array[i][1];
+    repackInObject.goals=array[i][2];
+    array[i]=repackInObject;
+  }
+  console.log(array);
 }
 
-function lowestNumber(array) {
-	var lowestNumber=array[0];
-	for(i=0; i<array.length; i++) {
-		if(array[i]>=lowestNumber) {
-			continue;
-		} else {
-			lowestNumber=array[i];
-		}
-	}
-	return lowestNumber;
+repackPlayers(players);
+
+/*TASK 1: 
+
+Based on existing object:
+
+var person = {
+	name: "Mike";
+	age: 28,
+	married: true
 }
 
-function multiply (numberOne, numberTwo) {
-	var multiply = numberOne(taskSixArray) * numberTwo(taskSixArray);
-	console.log(multiply);
+Create a function which should change age to 34, and delete married property. In the end console.log object.*/
+console.log("TASK 1:");
+
+var person = {
+  name: "Mike",
+  age: 28,
+  married: true
 }
 
-
-multiply(greatestNumber, lowestNumber);
-
-
-/*TASK 7:
-Create a function that should receive an array and the second function.
-
-Array should be:
-
-[15, 35, 46, 23, 15, 17, 23, 24, 35, 12, 72, 64, 35, 22, 64]
-
-After array is received you should find all numbers from array which are unique, and create a new array out of them. 
-Then, the second function that is passed in the first one should be called, and it should receive this new array we created.
-It should then delete the biggest number in the array, and console log the result (array). */
-
-console.log("TASK 7");
-
-var array = [15, 35, 46, 23, 15, 17, 23, 24, 35, 12, 72, 64, 35, 22, 64];
-
-
-function deleteBiggestNumber(array) {
-	var biggestNumber=array[0];
-	for(i=0; i<array.length; i++) {
-		if(array[i]<=biggestNumber) {
-			continue;
-		} else {
-			biggestNumber=array[i];
-		}
-	}
-	for (j=0; j<array.length; j++) {
-		if(biggestNumber===array[j]) {
-			delete array[j];
-		}
-	}
-	return console.log(array);
+function changeData() {
+  person.age = 34;
+  delete person.married;
 }
 
-function uniqueNumbers (array, deteleFunction) {
-	var newArray = [];
-	
-	for(i=0; i<array.length; i++) {
-		var number = array[i];
-		var unique=0;
-		for(j=0; j<array.length; j++) {
-			if(array[j]!==number) {
-				unique++;
-			} else {
-				continue;
-			}
-		}
-		if(unique===array.length-1) {
-			newArray[newArray.length]=number;
-		}
-	}
-	
-	deteleFunction(newArray);
+console.log(person);
+
+changeData();
+
+console.log(person);
+
+
+/*TASK 2: 
+
+Based on existing object:
+
+var person = {
+	name: "Jack";
+	age: 32,
+	married: true
 }
 
-uniqueNumbers(array, deleteBiggestNumber);
+Create a function which should check if person has children property, if not add it.
+Its value should be array containing two objects with children data. Each object should contain child name, age and gender.*/
+console.log("TASK 2:");
+
+person = {
+  name: "Jack",
+  age: 32,
+  married: true
+}
+
+function ifPersonHasChildren() {
+  if(person.hasOwnProperty("children")===true) {
+    console.log("Children property already exist.");
+  } else {
+    person.children = [
+    {
+      name:"Jane",
+      age: 11,
+      gender: "female"
+    },
+    {
+      name:"Mike",
+      age: 5,
+      gender: "male"
+    }
+    ];
+    console.log(person);
+  }
+}
+
+ifPersonHasChildren();
+
+ifPersonHasChildren();
+
+
+/*TASK 3:
+
+Based on existing array of objects:
+
+var students = [ 
+   {
+       name: 'Mike',
+       age: 28,
+       passed: false
+   },
+   {
+       name: 'Anna',
+       age: 23,
+       passed: true
+   },
+   {
+       name: 'Jack',
+       age: 32,
+       passed: true
+   },
+];
+
+Create a function which should console.log if student passed exam, result should be something like:
+
+"Jack passed exam" or "Mike didn't pass exam"*/
+console.log("TASK 3:");
+
+var students = [ 
+   {
+       name: 'Mike',
+       age: 28,
+       passed: false
+   },
+   {
+       name: 'Anna',
+       age: 23,
+       passed: true
+   },
+   {
+       name: 'Jack',
+       age: 32,
+       passed: true
+   },
+];
+
+function examPassed() {
+  for(var i=0; i<students.length; i++) {
+    if(students[i].passed) {
+      console.log(students[i].name +" passed exam.");
+    } else {
+      console.log(students[i].name +" didn't pass exam.")
+    }
+  }
+}
+
+examPassed();
+
+/*TASK 4:
+
+Based on existing array of objects:
+
+var students = [ 
+   {
+       name: 'Mike',
+       age: 28,
+       passed: false
+   },
+   {
+       name: 'Anna',
+       age: 23,
+       passed: true
+   },
+   {
+       name: 'Jack',
+       age: 32,
+       passed: true
+   },
+];
+
+Create a function which should repack existing data into three arrays, names, ages, and passed. Example of names array:
+
+var names = ['Mike', 'Anna', 'Jack'];*/
+console.log("TASK 4:");
+
+
+function repackStudents() {
+  var names = [];
+  var ages = [];
+  var passed = [];
+
+  for(var i=0; i<students.length; i++) {
+    names[names.length]=students[i].name;
+    ages[ages.length]=students[i].age;
+    passed[passed.length]=students[i].passed;
+  }
+
+  
+  return [names, ages, passed];
+}
+
+console.log(repackStudents());
