@@ -1,271 +1,282 @@
-/*TASK from class*/
-console.log("TASK from class:");
+/* ***** JS PRACTISING *****
 
-var players = [["Mikey",5,14],["Leon",4,23],["John",1,5],["Filip",7,31],["Dean",6,21],["Grorge",2,12]];
+TASK 1:
 
-function repackPlayers (array) {
-  for(var i=0; i<players.length; i++) {
-    var repackInObject = {};
-    repackInObject.name=array[i][0];
-    repackInObject.titules=array[i][1];
-    repackInObject.goals=array[i][2];
-    array[i]=repackInObject;
-  }
-  console.log(array);
-}
+Based on object:
 
-repackPlayers(players);
+var someData = {
+  name: "Peter",
+  lastName: "Dinklage",
+  status: "married"
+};
 
-/*TASK 1: 
+Create a function that should receive this object,
+and repack it to the new object where values from previous object represent both,
+ keys and values of the new object. */
 
-Based on existing object:
-
-var person = {
-	name: "Mike";
-	age: 28,
-	married: true
-}
-
-Create a function which should change age to 34, and delete married property. In the end console.log object.*/
 console.log("TASK 1:");
 
-var person = {
-  name: "Mike",
-  age: 28,
-  married: true
+var someData = {
+  name: "Peter",
+  lastName: "Dinklage",
+  status: "married"
+};
+
+function repackTaskOne (person) {
+  var repackPerson = new Object();
+  repackPerson[person.name] = person.name;
+  repackPerson[person.lastName] = person.lastName;
+  repackPerson[person.status] = person.status;
+
+  return repackPerson;
 }
 
-function changeData() {
-  person.age = 34;
-  delete person.married;
-}
+console.log(repackTaskOne(someData));
 
-console.log(person);
+/* TASK 2: 
 
-changeData();
+Based on array:
 
-console.log(person);
+var someData = [13, 45, 56, [32, 11], 27, [55, 92]];
 
+Create a function that should repack this array to another one where all numbers are contained in the same array,
+in the exact order like in provided array. */
 
-/*TASK 2: 
-
-Based on existing object:
-
-var person = {
-	name: "Jack";
-	age: 32,
-	married: true
-}
-
-Create a function which should check if person has children property, if not add it.
-Its value should be array containing two objects with children data. Each object should contain child name, age and gender.*/
 console.log("TASK 2:");
 
-person = {
-  name: "Jack",
-  age: 32,
-  married: true
-}
+someData = [13, 45, 56, [32, 11], 27, [55, 92]];
 
-function ifPersonHasChildren() {
-  if(person.hasOwnProperty("children")===true) {
-    console.log("Children property already exist.");
-  } else {
-    person.children = [
-    {
-      name:"Jane",
-      age: 11,
-      gender: "female"
-    },
-    {
-      name:"Mike",
-      age: 5,
-      gender: "male"
+ function repackTaskTwo (numbersArray) {
+  var newArrayOfNumbers = new Array();
+  for(var i=0; i<numbersArray.length; i++) {
+    if(numbersArray[i].length) {
+      for(var j=0; j<numbersArray[i].length; j++) {
+        newArrayOfNumbers[newArrayOfNumbers.length] = numbersArray[i][j];
+      }
+    } else {
+      newArrayOfNumbers[newArrayOfNumbers.length] = numbersArray[i];
     }
-    ];
-    console.log(person);
   }
-}
+  return newArrayOfNumbers;
+} 
 
-ifPersonHasChildren();
+console.log(repackTaskTwo(someData));
 
-ifPersonHasChildren();
+/* TASK 3: 
 
+Based on array:
 
-/*TASK 3:
+var someData = [13, 45, 56, [32, 11], 27, [55, 92]];
 
-Based on existing array of objects:
+Create a function that should receive array, get both subarrays from parent array,
+and pass it into another function, which should then join those arrays.
+In the end result should be returned and stored in variable which contains first function. */
 
-var students = [ 
-   {
-       name: 'Mike',
-       age: 28,
-       passed: false
-   },
-   {
-       name: 'Anna',
-       age: 23,
-       passed: true
-   },
-   {
-       name: 'Jack',
-       age: 32,
-       passed: true
-   },
-];
-
-Create a function which should console.log if student passed exam, result should be something like:
-
-"Jack passed exam" or "Mike didn't pass exam"*/
 console.log("TASK 3:");
 
-var students = [ 
-   {
-       name: 'Mike',
-       age: 28,
-       passed: false
-   },
-   {
-       name: 'Anna',
-       age: 23,
-       passed: true
-   },
-   {
-       name: 'Jack',
-       age: 32,
-       passed: true
-   },
-];
+someData = [13, 45, 56, [32, 11], 27, [55, 92]];
 
-function examPassed() {
-  for(var i=0; i<students.length; i++) {
-    if(students[i].passed) {
-      console.log(students[i].name +" passed exam.");
+var repackTaskThree = function(numberArray, joiningInnerArrays) {
+  var innerArrays = new Array();
+  for(var i=0; i<numberArray.length; i++) {
+    if(numberArray[i].length === false) {
+      continue;
     } else {
-      console.log(students[i].name +" didn't pass exam.")
+      innerArrays = joiningInnerArrays(innerArrays, numberArray[i]);
+    }
+  }
+
+  return innerArrays;
+}
+
+var creatingNewArray = function (a, b) {
+  for(var i=0; i<b.length; i++) {
+    a[a.length] = b[i];
+  }
+  return a;
+}
+
+console.log(repackTaskThree(someData, creatingNewArray));
+
+/* TASK 4:
+
+Based on object:
+
+var someData = {
+  name: "Peter",
+  lastName: "Dinklage",
+  status: "married"
+};
+
+Create a function that should check if there is name in object,
+if yes it should return another function which should remove name from the function,
+if no then it should return a function which would set a name propery to the object,
+  with the value passed once function is called. */
+
+console.log("TASK 4:");
+
+someData = {
+  name: "Peter",
+  lastName: "Dinklage",
+  status: "married"
+};
+
+function checkingName (a) {
+  if(a.hasOwnProperty("name")) {
+    return function () {
+      delete a.name;
+      console.log("The property name was deleted because it existed in the copied object.");
+    }
+  } else {
+    return function (name) {
+      a.name = name;
+      console.log("The property name didn't exist in copied object. New value of the new created property is "+a.name);
     }
   }
 }
 
-examPassed();
+checkingName(someData)("John");
+checkingName(someData)("John");
 
-/*TASK 4:
+/* TASK 5:
 
-Based on existing array of objects:
+Based on object:
 
-var students = [ 
-   {
-       name: 'Mike',
-       age: 28,
-       passed: false
-   },
-   {
-       name: 'Anna',
-       age: 23,
-       passed: true
-   },
-   {
-       name: 'Jack',
-       age: 32,
-       passed: true
-   },
-];
+var someData = {
+  name: "Peter",
+  lastName: "Dinklage",
+  status: "married"
+};
 
-Create a function which should repack existing data into three arrays, names, ages, and passed. Example of names array:
+Create a method that should check if there is name in object,
+if yes it should create second method in the same object and then call it.
+The second method should remove name from the function, and console log the object in it's current state. 
+The second method should then create a third method and call it. 
+Third method should add name property back to the object, with value of "Mike", and then console log object.
 
-var names = ['Mike', 'Anna', 'Jack'];*/
-console.log("TASK 4:");
+BONUS:
 
+Try to set name with value it had before. */
 
-function repackStudents() {
-  var names = [];
-  var ages = [];
-  var passed = [];
-
-  for(var i=0; i<students.length; i++) {
-    names[names.length]=students[i].name;
-    ages[ages.length]=students[i].age;
-    passed[passed.length]=students[i].passed;
-  }
-
-  
-  return [names, ages, passed];
-}
-
-console.log(repackStudents());
-
-
-/*TASK 5:
-
-Based on existing object:
-
-var person = {
-  name: "Jack";
-  age: 32,
-  married: true
-}
-
-Create the other object which should inherit data from existing object. 
-Then console.log age by accessing the newly created object.*/
 console.log("TASK 5:");
 
-person = {
-  name: "Jack",
-  age: 32,
-  married: true
+someData = {
+  name: "Peter",
+  lastName: "Dinklage",
+  status: "married"
+};
+
+someData.checkingPropName = function(newName) {
+  if(this.hasOwnProperty("name")) {
+    var resetingName = newName;
+    this.removingPropName = function (newName) {
+      var firstName = newName;
+      delete this.name;
+      console.log(this);
+      /* Vladice dodala sam sledecu liniju da console.log-uje samo ime,
+      jer mi nije jasno sto u prethodnoj liniji izbacuje i name u propertijima(kad se otvori objekat sa strelicom u konzoli).
+      Ovako radi - izbacuje undefined - videces kad pokrenes. Trazila sam na netu,
+      ali se nisam nesto snasla */
+      console.log("Name in current state: "+this.name);
+      this.addingNewName = function (newName) {
+        this.name = newName;
+        console.log(this);
+        console.log("Name in current state: "+this.name);
+      }
+      this.addingNewName(firstName);
+    }
+    this.removingPropName(resetingName);
+
+  } else {
+    console.log(this);
+  }
 }
+console.log("Checking with name Mike");
+someData.checkingPropName("Mike");
 
-var otherPerson = Object.create(person);
-
-console.log("Age of otherPerson: "+otherPerson.age);
-
+console.log("Checking with name Peter");
+someData.checkingPropName("Peter");
 
 
-/*TASK 6:
+/* ***** JS PRACTISE HOMEWORK *****
 
-Based on existing object:
+TASK 1:
 
-var person = {
-  name: "Mike";
-  age: 28,
-  married: true
-}
+Create array with data, and loop through it, so in the end you console log this:
 
-Create a method which, when called, should console.log name and age of existing object.*/
-console.log("TASK 6:");
+"At position 0, subposition 0, value is 1"
+"At position 0, subposition 1, value is 2"
+"At position 0, subposition 2, value is 3"
+"At position 1, subposition 0, value is 4"
+"At position 1, subposition 1, value is 5"
+"At position 1, subposition 2, value is 6"
+"At position 2, subposition 0, value is 7"
+"At position 2, subposition 1, value is 8"
+"At position 2, subposition 2, value is 9" */
 
-person = {
-  name: "Mike",
-  age: 28,
-  married: true,
-  nameAndAge: function() {
-    console.log("Name of this person is: "+this.name+". And his age is: "+this.age);
+console.log("HOMEWORK TASK 1:");
+
+var data = [[1,2,3],[4,5,6],[7,8,9]];
+
+data.printData = function() {
+  for(var i=0; i<this.length; i++) {
+    for(var j=0; j<this[i].length; j++) {
+      console.log("At position "+ i +", subposition "+ j +", value is "+this[i][j]);
+    }
   }
 }
 
-person.nameAndAge();
+data.printData();
 
 
-/*TASK 7:
+/* TASK 2: 
 
-Based on existing object:
+Create a method that should console log name and age from any object.
+Then create array with multiple objects, each object should contain different names and ages.
+Call a method on each of them. */
 
-var person = {};
+console.log("HOMEWORK TASK 2:");
 
-Create a method which should create name, age and married properties in existing object, based on parameters passed in method.*/
-console.log("TASK 7:");
-
-person = {};
-
-console.log(person);
-
-Object.prototype.nameAgeMarried = function (name, age, married) {
-    this.name = name;
-    this.age = age;
-    this.married = married;
+Object.prototype.printNameAndAge = function () {
+  console.log("Name of this person is "+this.name+" and his age is "+this.age);
 }
 
-person.nameAgeMarried("Anna", 18, false);
+var persons = [
+{
+  name: "Mike",
+  age: 44
+},
+{
+  name: "John",
+  age: 16
+},
+{
+  name: "Ian",
+  age: 28
+},
+{
+  name: "Jim",
+  age: 30
+},
+{
+  name: "Dean",
+  age: 15
+}
+];
 
-console.log(person);
+function loopPersons (a) {
+  for(var i=0; i<a.length; i++) {
+    a[i].printNameAndAge();
+  }
+}
 
+loopPersons(persons);
+
+var someExample = {
+  address: "Belgrade",
+  phoneNumber: 123456789,
+  age: 55
+}
+
+console.log("TEST");
+someExample.printNameAndAge();
