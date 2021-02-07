@@ -1,174 +1,284 @@
-/* TASK 1:
+/* ***** JS PREDEFINED FUNCTIONS HOMEWORK *****
 
-Create a constructor function for generating student objects. 
-Each student object should have name, last name, age and average grade. */
+TASK 1
+Based on given string:
 
-console.log("TASK 1:");
+"Lorem ipsum dolor sit amet"
 
-function Student(firstName, lastName, age, averageGrade) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-  this.age = age;
-  this.averageGrade = averageGrade;
+Create a function that should receive string, and transform all letters to lowercase. */
+
+console.log("TASK 1");
+
+var stringTaskOne = "Lorem ipsum dolor sit amet";
+
+function transformStringInToLowerCase (a) {
+  return a.toLowerCase();
 }
 
-var marko = new Student("Marko", "Milosevic", 26, 9.50);
+var resultTaskOne = transformStringInToLowerCase(stringTaskOne);
 
-console.log(marko);
-console.log(marko.__proto__)
+console.log(resultTaskOne);
 
-/* TASK 2:
+/* TASK 2
 
-Create a constructor function for generating objects with data about players of your favorite football team 
-(name, age, goals scored, yellow cards). You can find statistics online. */
+Based on given string:
 
-console.log("TASK 2:");
+"Lorem ipsum dolor sit amet"
 
-function FootballPlayer(name, age, goals, yellowCards) {
-  this.name = name;
-  this.age = age;
-  this.goals = goals;
-  this.yellowCards = yellowCards;
-}
+Create a function that should check if there is a word "sit" in the string,
+ and console log sentence saying that it exist or not. */
 
-var joeGomez = new FootballPlayer ("Joe Gomez", 23,16,4);
-var andrewRobertson = new FootballPlayer ("Andrew Robertson", 20,10,1);
-var sadioMane = new FootballPlayer ("Sadio Mane", 18,8,0);
-var allisonBecker = new FootballPlayer ("Allison Becker", 22,12,2);
-var necoWilliams = new FootballPlayer ("Neco Williams", 21,7,0);
+console.log("TASK 2");
 
-console.log(joeGomez, andrewRobertson, sadioMane, allisonBecker, necoWilliams);
+var stringTaskTwo = stringTaskOne;
 
-
-
-/* TASK 3:
-
-Try to do the same thing as in the previous task, but when creating player objects try to do it dinammicaly (using loop).
-For that you'll need data in following format:
-
-var players = [["Player name", 27, 12, 4], ["Player name", 27, 12, 4], ["Player name", 27, 12, 4]];
-
-This array is just example, change data in this array with data of players you choose. */
-
-console.log("TASK 3:");
-
-var players = [["Joe Gomez", 23, 16, 4],["Andrew Robertson", 20, 10, 1],["Sadio Mane", 18, 8, 0],["Allison Becker", 22, 12, 2],["Neco Williams", 21, 7, 0]];
-
-function playerTaskThree (a) {
-  var playersArray = [];
-  for(var i = 0; i<a.length; i++) {
-    playersArray[playersArray.length] = new FootballPlayer (a[i][0],a[i][1],a[i][2],a[i][3]);
+function isThereInputedWord (sentence, word) {
+  if(sentence.indexOf(word) > -1) {
+   console.log("In this sentence exists word: "+word);
+  } else {
+   console.log ("In this sentence word '" +word+ "' doesn't exist.")
   }
-  return playersArray;
 }
 
-console.log(playerTaskThree(players));
+isThereInputedWord(stringTaskTwo, "sit");
 
+/* TASK 3
 
-/* TASK 4:
+Based on given string:
 
-Create a construction function that should contain properties for first number, second number, and method. 
-Then create a four instances of object from that constructor, each with different numbers, and different method. 
-First should have method for multiplying of its own numbers, second for dividing, 
-third for adding and fourth for subtracting. */
+"Lorem ipsum dolor sit amet"
 
-console.log("TASK 4:");
+Create a function that should find and return index of the last letter in the sentence. */
 
-var multiplying = function(a,b) {
-  return a*b;
+console.log("TASK 3");
+
+var stringTaskThree = stringTaskOne;
+
+function indexOfTheLastLetterInTheSentence (sentence) {
+  var indexOfLastLetter = sentence.length - 1;
+  return indexOfLastLetter;
 }
 
-var dividing = function(a,b) {
-  return a/b;
+var lastLetterOfStringTaskThree = indexOfTheLastLetterInTheSentence(stringTaskThree);
+
+console.log("Index of the last letter in the sentence is: "+lastLetterOfStringTaskThree);
+
+/* TASK 4
+
+Based on given string:
+
+"Lorem ipsum dolor sit amet"
+
+Create a function that should split string based on empty space, and return first 3 results. */
+
+console.log("TASK 4");
+
+var stringTaskFour = stringTaskOne;
+
+function splitSentenceOnEmptySpaceAndReturnFirstThreeResults (sentence) {
+  var splitedSentence = sentence.split(" ");
+  var firstThreeResults = splitedSentence.slice(0,3);
+  return firstThreeResults;
 }
 
-var adding = function(a,b) {
-  return a+b;
-}
+var resultOfTaskFour = splitSentenceOnEmptySpaceAndReturnFirstThreeResults (stringTaskFour);
 
-var subtracting = function(a,b) {
-  return a-b;
-}
-
-function Calculator(firstNumber, secondNumber, operation) {
-  this.firstNumber = firstNumber;
-  this.secondNumber = secondNumber;
-  this.operation = operation(this.firstNumber, this.secondNumber);
-}
-
-var exampleOne = new Calculator(5,5,multiplying);
-console.log(exampleOne);
-
-var exampleTwo = new Calculator(36,9,dividing);
-console.log(exampleTwo);
-
-var exampleThree = new Calculator(4.1,3.9,adding);
-console.log(exampleThree);
-
-var exampleFour = new Calculator(10,3,subtracting);
-console.log(exampleFour);
-
-/* TASK 5:
-
-Test your understanding of closures and scope with following examples.
-
-IMPORTANT! - First read the task and try to give an answer,
-and then copy the code to your file and check what do you get in console.
+console.log(resultOfTaskFour);
 
 
-    QUESTION 1:
+/* TASK 5
 
-  What’s the result of executing this code and why?
+Based on given string:
 
+"Piter is an actor."
 
-    ANSWER 1:
-  --- the result is: 
+Create a function that should turn a string into the following string:
 
-  undefined 
-  2
+"Pitor is an acter." */
 
-  because var a is called in console.log before declaration, 
-  and the number two will be visible in console.log because function foo() is defined as function declaration.
-  All that happened because of creation faze of hoisting.
+console.log("TASK 5");
 
+var stirngTaskFive = "Piter is an actor.";
 
-    QUESTION 2:
+function findingLetters(sentence, x, y) {
 
-  What is result?
-
-    ANSWER 2:
-  --- the result is: 
-
-  nothing, 
-  if we console.log firstResult and result:
-
-      function otherFunction(input) {
-        return a;
-      }
-      5
-
-
-    QUESTION 3:
-
-  What is the result of the following code? Explain your answer.
-
-    ANSWER 3:
-  --- the result is: 
-
-  Aurelio De Rosa       -  because Aurelio De Rosa is scope for fullname in obj.properties
-  function() {
-    return this.fullname;
+  var indexArray = [];
+  for(var i=0; i<sentence.length; i++) {
+    if(sentence[i]===x || sentence[i]===y){
+      indexArray.push([sentence[i], i]);
+    }
   }
-  John Doe              -  because John Doe is scope for fullname in test();
+  return indexArray;
+}
+
+function separateString(sentence,separatePoint, m) {
+  var firstPart = sentence.substring(0, separatePoint);
+  var secondPart = sentence.substring(separatePoint+1);
+  sentence = firstPart + m + secondPart;
+  return sentence;
+}
+
+function changingXToYAndYToX (sentence, x, y) {
+  var newSentence = sentence;
+  var indexArray = findingLetters(newSentence,x,y);
+  console.log(indexArray);
+
+  for(var i=0; i<indexArray.length; i++) {
+    var charAtIndex = newSentence.charAt(indexArray[i][1]);
+    if (charAtIndex === x) {
+      newSentence = separateString(newSentence, indexArray[i][1], y);
+    } else if (charAtIndex === y) {
+      newSentence = separateString(newSentence, indexArray[i][1], x);
+    }
+  }
+
+  return newSentence;
+}
+
+var test = changingXToYAndYToX(stirngTaskFive,"i","a");
+var resultOfTaskFive = changingXToYAndYToX(stirngTaskFive,"o","e");
+
+console.log(stirngTaskFive);
+console.log(test);
+console.log(resultOfTaskFive);
 
 
-    QUESTION 4:
+/* TASK 6
 
-  What will you see in the console for the following example?
+Based on given array:
 
-    ANSWER 4:
-  --- the result is:
-    
-    1
-*/
+var someData = [34, 23, 14, 56, 23, 44, 65];
 
+Create a function that should remove number 56 from an array and return array without it. */
+
+console.log("TASK 6");
+
+var someData = [34, 23, 14, 56, 23, 44, 65];
+
+function removingNumber (data, number) {
+  for(var i=0; i<data.length; i++) {
+    if(data[i]===number) {
+      data.splice(i, 1);
+    }
+  }
+  return data;
+}
+
+console.log(removingNumber(someData, 56));
+
+/* TASK 7
+
+Based on given array:
+
+var someData = [34, 23, 14, 56, 23, 44, 65];
+
+Create a function that should turn it into following array:
+
+var otherData = [23, 14, 56, 65, 44, 23]; */
+
+console.log("TASK 7");
+
+someData = [34, 23, 14, 56, 23, 44, 65];
+
+function removingFirstFromHalfReverse (someData) {
+  someData.shift();
+  var half = someData.length/2;
+  var halfRound = half.toFixed(0);
+  var newData = someData.splice(halfRound);
+  var newDataReverse = newData.reverse();
+  var result = someData.concat(newDataReverse);
+  return result;
+}
+
+var resultOfTaskSeven = removingFirstFromHalfReverse(someData);
+
+console.log(resultOfTaskSeven);
+
+/* TASK 8
+
+Based on given array:
+
+var someData = [334, 233, 212, 199, 154, 122];
+
+Create a function that should repack array to the new one,
+where each element should be current one,
+reduced by value of previous one from initial array. */
+
+console.log("TASK 8");
+
+someData = [334, 233, 212, 199, 154, 122];
+
+function reducedByValueOfPrevious (data) {
+  var dataNew = data.map(function (item, index) {
+    if(data.indexOf(item)===0) {
+      return item;
+    }
+    return item - data[index-1];
+  });
+  return dataNew;
+}
+
+console.log(reducedByValueOfPrevious(someData));
+
+/* TASK 9
+
+Based on given array:
+
+var students = [
+  {
+     name: "Jim",
+     avgGrade: 8.5556
+  },
+  {
+     name: "Mike",
+     avgGrade: 8.5492
+  },
+  {
+     name: "Anna",
+     avgGrade: 8.9322
+  },
+  {
+     name: "Jack",
+     avgGrade: 8.6111
+  }
+]
+
+Create a function that should return new array with all students whose average grade is larger than 8.5.
+In new array, average grade should be formatted to 2 decimals. */
+
+console.log("TASK 9");
+
+var students = [
+  {
+     name: "Jim",
+     avgGrade: 8.5556
+  },
+  {
+     name: "Mike",
+     avgGrade: 7
+  },
+  {
+     name: "Anna",
+     avgGrade: 8.9322
+  },
+  {
+     name: "Jack",
+     avgGrade: 8.6111
+  }
+]
+
+function filterForGrade (data) {
+  var eightPointFive = data.filter(function(item) {
+    return item.avgGrade > 8.5;
+  });
+
+  var twoDecimals = eightPointFive.map(function (item) {
+    var two = item.avgGrade.toFixed(2);
+    item.avgGrade = two;
+    return item;
+  });
+
+  return eightPointFive;
+}
+
+console.log(filterForGrade(students))
