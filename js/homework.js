@@ -1,284 +1,167 @@
-/* ***** JS PREDEFINED FUNCTIONS HOMEWORK *****
+/* ***** JS BOM HOMEWORK *****
+
+
+WHAT SHOULD YOU DO ?
 
 TASK 1
-Based on given string:
 
-"Lorem ipsum dolor sit amet"
+Create a function that will ALERT if browser is online or not. */
 
-Create a function that should receive string, and transform all letters to lowercase. */
+console.log("TASK 1:");
 
-console.log("TASK 1");
+/* Vladice ako bude zamrseno ovo sto sam radila ispravicu. Zamisao mi je bila da se Task 1 i 5 odmah izvrse,
+nakon njih Task 6 i da se u zavisnosti od unetih vrednosti(ako ne postoji ili je null) Task 4 i 2 se izvrsavaju odmah,
+a ako vrednost za Taks 6 postoji, onda Task 4 i 2 cekaju 60 s dok se ne obavi Task 6, s tim sto sam dodala po par sekundi,
+da za to vreme moze da se proveri u konzoli da je localStorage ociscen.
+Ovako mi je bilo preglednije u konzoli, posto sam se pogubila kad sam redom radila.*/ 
 
-var stringTaskOne = "Lorem ipsum dolor sit amet";
-
-function transformStringInToLowerCase (a) {
-  return a.toLowerCase();
+function onOrOffLine () {
+  window.navigator.onLine ? alert("Browser is online") : alert("Browser is offline");
+  console.log("Task 1 is completed.")
 }
 
-var resultTaskOne = transformStringInToLowerCase(stringTaskOne);
+onOrOffLine();
 
-console.log(resultTaskOne);
 
 /* TASK 2
 
-Based on given string:
+Create a function that should, when run, reload the page. */
 
-"Lorem ipsum dolor sit amet"
+function refreshPage () {
+  console.log("TASK 2:");
+  console.log("Task 2 will be completed in next 5s.");
 
-Create a function that should check if there is a word "sit" in the string,
- and console log sentence saying that it exist or not. */
-
-console.log("TASK 2");
-
-var stringTaskTwo = stringTaskOne;
-
-function isThereInputedWord (sentence, word) {
-  if(sentence.indexOf(word) > -1) {
-   console.log("In this sentence exists word: "+word);
-  } else {
-   console.log ("In this sentence word '" +word+ "' doesn't exist.")
-  }
+  setTimeout(done, 5000);
 }
 
-isThereInputedWord(stringTaskTwo, "sit");
+function done () {
+  window.location.reload();
+}
 
 /* TASK 3
 
-Based on given string:
+Create a function that should, 3 seconds after page is loaded,
+redirect you to google.com, ad then, 3 seconds after that take you back to your page. 
+(Comment out your code once you're done so you can continue with the other tasks, as this will cause infinite loop). */
 
-"Lorem ipsum dolor sit amet"
+console.log("TASK 3:");
 
-Create a function that should find and return index of the last letter in the sentence. */
+console.log("Task 3 is commented out.");
 
-console.log("TASK 3");
-
-var stringTaskThree = stringTaskOne;
-
-function indexOfTheLastLetterInTheSentence (sentence) {
-  var indexOfLastLetter = sentence.length - 1;
-  return indexOfLastLetter;
+function changingPage () {
+  window.location.href="https://www.google.com/";
 }
 
-var lastLetterOfStringTaskThree = indexOfTheLastLetterInTheSentence(stringTaskThree);
+//setTimeout(changingPage,3000);
 
-console.log("Index of the last letter in the sentence is: "+lastLetterOfStringTaskThree);
 
 /* TASK 4
 
-Based on given string:
+Crete a function that should every second console log a number incremented by one. 
+When number reach 15 it should stop running. */
 
-"Lorem ipsum dolor sit amet"
+function taskFour () {
+  var printing = setInterval(numbToFifteen, 1000);
 
-Create a function that should split string based on empty space, and return first 3 results. */
+  var i = 0;
 
-console.log("TASK 4");
-
-var stringTaskFour = stringTaskOne;
-
-function splitSentenceOnEmptySpaceAndReturnFirstThreeResults (sentence) {
-  var splitedSentence = sentence.split(" ");
-  var firstThreeResults = splitedSentence.slice(0,3);
-  return firstThreeResults;
+  function numbToFifteen () {
+    if(i === 0) {
+      console.log("TASK 4:");
+    }
+    i++
+    i<=15 ? console.log(i) : clearInterval (printing);
+  }
 }
-
-var resultOfTaskFour = splitSentenceOnEmptySpaceAndReturnFirstThreeResults (stringTaskFour);
-
-console.log(resultOfTaskFour);
 
 
 /* TASK 5
 
-Based on given string:
+Create a function that should return a random number (round number) between 0 and 10, every time you run it. */
 
-"Piter is an actor."
+console.log("TASK 5:");
 
-Create a function that should turn a string into the following string:
-
-"Pitor is an acter." */
-
-console.log("TASK 5");
-
-var stirngTaskFive = "Piter is an actor.";
-
-function findingLetters(sentence, x, y) {
-
-  var indexArray = [];
-  for(var i=0; i<sentence.length; i++) {
-    if(sentence[i]===x || sentence[i]===y){
-      indexArray.push([sentence[i], i]);
-    }
-  }
-  return indexArray;
+function randomNumber () {
+  return Math.round(Math.random()*10);
 }
 
-function separateString(sentence,separatePoint, m) {
-  var firstPart = sentence.substring(0, separatePoint);
-  var secondPart = sentence.substring(separatePoint+1);
-  sentence = firstPart + m + secondPart;
-  return sentence;
-}
+var number = randomNumber();
 
-function changingXToYAndYToX (sentence, x, y) {
-  var newSentence = sentence;
-  var indexArray = findingLetters(newSentence,x,y);
-  console.log(indexArray);
-
-  for(var i=0; i<indexArray.length; i++) {
-    var charAtIndex = newSentence.charAt(indexArray[i][1]);
-    if (charAtIndex === x) {
-      newSentence = separateString(newSentence, indexArray[i][1], y);
-    } else if (charAtIndex === y) {
-      newSentence = separateString(newSentence, indexArray[i][1], x);
-    }
-  }
-
-  return newSentence;
-}
-
-var test = changingXToYAndYToX(stirngTaskFive,"i","a");
-var resultOfTaskFive = changingXToYAndYToX(stirngTaskFive,"o","e");
-
-console.log(stirngTaskFive);
-console.log(test);
-console.log(resultOfTaskFive);
+console.log("Random number from 0 to 10 is: "+number);
 
 
 /* TASK 6
 
-Based on given array:
+  STEP 1
+      Create an array of objects, containing at least 5 users. 
+      Each of them should have name, age and status. 
+      Status should be "inactive" for each of them.
 
-var someData = [34, 23, 14, 56, 23, 44, 65];
+  STEP 2
+      Once page is loaded it should display a popup where user can enter his name. 
+      Once it's done name user entered should be compared against existing users.
 
-Create a function that should remove number 56 from an array and return array without it. */
+      If it doesn't match any user you should console log message: 
 
-console.log("TASK 6");
+          "User with name " + name + " doesn't exist."
 
-var someData = [34, 23, 14, 56, 23, 44, 65];
+      If it match some of users, object with that user's data should be copied from array. 
+      It's status should be changed to "active", and it should be saved in local storage using "loggedInUser" as a key.
 
-function removingNumber (data, number) {
-  for(var i=0; i<data.length; i++) {
-    if(data[i]===number) {
-      data.splice(i, 1);
+  STEP 3
+      After one minute user's data should be removed from local storage.
+
+      You should console log a message that user is logged out. */
+  
+console.log("TASK 6:");
+
+function Person (name, age) {
+  this.name = name;
+  this.age = age;
+  this.status = "inactive";
+}
+
+var data = [new Person("John",34), new Person("Peter",40), new Person("Mike",18), 
+new Person("Angela",30), new Person("Dean",20)];
+
+var enteredName = prompt ("Enter your name:");
+
+var nonMatchUsers = 0;
+
+function searching () {
+
+  for(var i = 0; i<data.length; i++) {
+    if(data[i].name === enteredName) {
+      var foundPerson = data[i];
+      foundPerson.status = "active";
+      console.log(foundPerson)
+      localStorage.setItem("loggedInUser", foundPerson.name);
+      setTimeout(remPerFromLocStor, 60000);
+      function remPerFromLocStor(){
+        localStorage.clear();
+        foundPerson.status= "inactive";
+        console.log("User "+ foundPerson.name +" is loggedOut");
+        console.log(foundPerson)
+      }
+    } else {
+      nonMatchUsers++;
+    }
+    if(nonMatchUsers===data.length) {
+      console.log("User with name " + enteredName + " doesn't exist.");
     }
   }
-  return data;
 }
 
-console.log(removingNumber(someData, 56));
+searching();
 
-/* TASK 7
 
-Based on given array:
+/*RESULTS OF TASK 2 AND TASK 4*/
 
-var someData = [34, 23, 14, 56, 23, 44, 65];
-
-Create a function that should turn it into following array:
-
-var otherData = [23, 14, 56, 65, 44, 23]; */
-
-console.log("TASK 7");
-
-someData = [34, 23, 14, 56, 23, 44, 65];
-
-function removingFirstFromHalfReverse (someData) {
-  someData.shift();
-  var half = someData.length/2;
-  var halfRound = half.toFixed(0);
-  var newData = someData.splice(halfRound);
-  var newDataReverse = newData.reverse();
-  var result = someData.concat(newDataReverse);
-  return result;
+if(nonMatchUsers===data.length || enteredName===null) {
+  setTimeout (taskFour,3000);
+  setTimeout(refreshPage, 20000);
+} else {
+  setTimeout (taskFour,66000);
+  setTimeout(refreshPage, 82000);
 }
 
-var resultOfTaskSeven = removingFirstFromHalfReverse(someData);
-
-console.log(resultOfTaskSeven);
-
-/* TASK 8
-
-Based on given array:
-
-var someData = [334, 233, 212, 199, 154, 122];
-
-Create a function that should repack array to the new one,
-where each element should be current one,
-reduced by value of previous one from initial array. */
-
-console.log("TASK 8");
-
-someData = [334, 233, 212, 199, 154, 122];
-
-function reducedByValueOfPrevious (data) {
-  var dataNew = data.map(function (item, index) {
-    if(data.indexOf(item)===0) {
-      return item;
-    }
-    return item - data[index-1];
-  });
-  return dataNew;
-}
-
-console.log(reducedByValueOfPrevious(someData));
-
-/* TASK 9
-
-Based on given array:
-
-var students = [
-  {
-     name: "Jim",
-     avgGrade: 8.5556
-  },
-  {
-     name: "Mike",
-     avgGrade: 8.5492
-  },
-  {
-     name: "Anna",
-     avgGrade: 8.9322
-  },
-  {
-     name: "Jack",
-     avgGrade: 8.6111
-  }
-]
-
-Create a function that should return new array with all students whose average grade is larger than 8.5.
-In new array, average grade should be formatted to 2 decimals. */
-
-console.log("TASK 9");
-
-var students = [
-  {
-     name: "Jim",
-     avgGrade: 8.5556
-  },
-  {
-     name: "Mike",
-     avgGrade: 7
-  },
-  {
-     name: "Anna",
-     avgGrade: 8.9322
-  },
-  {
-     name: "Jack",
-     avgGrade: 8.6111
-  }
-]
-
-function filterForGrade (data) {
-  var eightPointFive = data.filter(function(item) {
-    return item.avgGrade > 8.5;
-  });
-
-  var twoDecimals = eightPointFive.map(function (item) {
-    var two = item.avgGrade.toFixed(2);
-    item.avgGrade = two;
-    return item;
-  });
-
-  return eightPointFive;
-}
-
-console.log(filterForGrade(students))
