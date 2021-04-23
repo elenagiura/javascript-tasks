@@ -1,6 +1,7 @@
 ## General info
 This repository contains small tasks resolved in JavaScript code.
 They are separated in ten branches (each contains several tasks).
+Hope I helped you with some ideas! :)
 
 ## Technologies
 Project is created with:
