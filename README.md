@@ -1,7 +1,7 @@
 ## General info
-This repository contains small tasks resolved in JavaScript code.
+This repository contains small tasks resolved in JavaScript code. Tasks include manipulation of data types, objects, arrays, use of functions, built-in JS methods.
 They are separated in ten branches (each contains several tasks).
-Hope I helped you with some ideas! :)
+Hope I helped you with some better or just good ideas! :)
 
 ## Technologies
 Project is created with:
